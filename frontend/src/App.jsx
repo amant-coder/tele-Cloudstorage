@@ -507,7 +507,7 @@ function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <span>Made with ❤️ by ShreeAPI</span>
+        <span>Made with ❤️ by Aman Thakur</span>
         <span>{APP_NAME} · © {new Date().getFullYear()}</span>
       </div>
     </footer>
@@ -1286,7 +1286,7 @@ function PublicViewer({ token }) {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
           <div className="brand" onClick={() => (window.location.href = "/")}>
             <div className="brand-badge">☁️</div>
-            <span className="brand-shree">Shree</span><span className="brand-rest">CloudStorage</span>
+            <span className="brand-shree">Aman's</span><span className="brand-rest">CloudStorage</span>
           </div>
           <div style={{ display: "flex", gap: 14, fontSize: 13 }}>
             <a href="/">Home</a>
@@ -2053,7 +2053,7 @@ requests.get(
           </ul>
 
           <h2 id="credits">Credits</h2>
-          <p>{APP_NAME} — Powered by <strong>ShreeAPI</strong> · Designed by <strong>AnshAPI</strong>.</p>
+          <p>{APP_NAME} — Powered by <strong>ShreeAPI</strong> · Designed by <strong>Aman Thakur</strong>.</p>
         </div>
 
         {/* Right sidebar — "On This Page" with scroll-spy */}

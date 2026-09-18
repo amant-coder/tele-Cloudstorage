@@ -941,10 +941,31 @@ app.use("/api", apiLimiter, apiRouter);
 // ---------- ADMIN (metadata monitoring only — see admin.js) ----------
 app.use("/admin", adminRouter);
 
+// Optional self-ping: keep the app warm by hitting its own health endpoint
+// every 5 minutes. Set SELF_PING_URL to your deployed backend URL (e.g.
+// https://your-app.onrender.com/health or https://your-domain.com/health).
+const SELF_PING_URL = process.env.SELF_PING_URL;
+const SELF_PING_INTERVAL_MS = 5 * 60 * 1000;
+
+if (SELF_PING_URL) {
+  const pingSelf = async () => {
+    try {
+      const res = await fetch(SELF_PING_URL, { method: "GET", headers: { "User-Agent": "tg-drive-self-pinger" } });
+      console.log(`[self-ping] ${new Date().toISOString()} -> ${res.status} ${SELF_PING_URL}`);
+    } catch (err) {
+      console.error("[self-ping] failed:", err.message);
+    }
+  };
+
+  pingSelf();
+  setInterval(pingSelf, SELF_PING_INTERVAL_MS).unref();
+}
+
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`tg-drive backend listening on :${PORT}`);
   console.log(`NODE_ENV=${process.env.NODE_ENV || "(not set)"}`);
   console.log(`FRONTEND_URL=${process.env.FRONTEND_URL || "(not set — CORS will fall back to permissive, cookies will NOT work cross-domain)"}`);
   console.log(`Cookie settings: sameSite=${isProd ? "none" : "lax"}, secure=${isProd}`);
+  if (SELF_PING_URL) console.log(`Self-ping enabled: ${SELF_PING_URL} every 5 minutes`);
 });
