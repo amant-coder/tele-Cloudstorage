@@ -1,6 +1,6 @@
 <div align="center">
 
-# ☁️ ShreeCloudStorage
+# ☁️ Aman's CloudStorage
 
 ### Unlimited Cloud Storage Powered by Your Own Telegram Account
 
